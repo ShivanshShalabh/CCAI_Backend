@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+import json
 
 app = Flask(__name__)
 
@@ -214,7 +215,7 @@ def bills():
 
     account = mock_data.get(account_id)
     if account and account['DOB'] == dob:
-                return jsonify(account["bills"]), 200
+                return jsonify({k : json.dump(v) for k,v in account["bills"].items()}), 200
     else:
         return jsonify({"error": "Authentication failed"}), 401
 

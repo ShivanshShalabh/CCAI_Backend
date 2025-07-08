@@ -1,6 +1,4 @@
-from flask import Flask, request, jsonify, Response
-import os
-import json
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
@@ -206,11 +204,10 @@ def authenticate():
         return jsonify({"error": "Authentication failed"}), 401
 
 @app.route('/bills', methods=['POST'])
-def authenticate():
+def bills():
     data = request.get_json()
     account_id = data.get('accountID')
     dob = data.get('accountHolderDOB')
-    
 
     if not account_id or not dob:
          return jsonify({"error": "Missing accountID or accountHolderDOB"}), 400

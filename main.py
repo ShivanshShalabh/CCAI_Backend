@@ -7,6 +7,11 @@ app = Flask(__name__)
 # Sample data
 mock_data = {
     "ACC1001": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "mobileNumber": "555-1234",
+        "emailID": "john.doe@example.com",
+        "zipCode": "10001",
         "DOB": "1985-04-12",
         "bills": {
             "2025-04": {
@@ -36,7 +41,12 @@ mock_data = {
         },
         "outstandingBalance": 120.00
     },
-    "ACC1002": {
+    "ACC1002": {  
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "mobileNumber": "555-5678",
+        "emailID": "jane.smith@example.com",
+        "zipCode": "10002",
         "DOB": "1990-09-23",
         "bills": {
             "2025-04": {
@@ -66,7 +76,12 @@ mock_data = {
         },
         "outstandingBalance": 0.00
     },
-    "ACC1003": {
+    "ACC1003": {          
+        "firstName": "Robert",
+        "lastName": "Brown",
+        "mobileNumber": "555-8765",
+        "emailID": "robert.brown@example.com",
+        "zipCode": "10003",
         "DOB": "1978-12-05",
         "bills": {
             "2025-04": {
@@ -96,7 +111,12 @@ mock_data = {
         },
         "outstandingBalance": 444.20
     },
-    "ACC1004": {
+    "ACC1004": {   
+        "firstName": "Emily",
+        "lastName": "Davis",
+        "mobileNumber": "555-4321",
+        "emailID": "emily.davis@example.com",
+        "zipCode": "10004",
         "DOB": "2000-07-19",
         "bills": {
             "2025-04": {
@@ -127,6 +147,12 @@ mock_data = {
         "outstandingBalance": 0.00
     },
     "ACC1005": {
+        "firstName": "Michael",
+        "lastName": "Wilson",
+        "mobileNumber": "555-6789",
+        "emailID": "michael.wilson@example.com",
+        "zipCode": "10005",
+
         "DOB": "1995-03-30",
         "bills": {
             "2025-04": {
@@ -175,7 +201,7 @@ def authenticate():
 
     account = mock_data.get(account_id)
     if account and account['DOB'] == dob:
-        return Response(json.dumps({"message": "Authentication successful"}), status=200, mimetype='application/json')
+                return jsonify(account), 200
     else:
         return jsonify({"error": "Authentication failed"}), 401
 

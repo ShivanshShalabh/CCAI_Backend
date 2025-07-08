@@ -201,7 +201,23 @@ def authenticate():
 
     account = mock_data.get(account_id)
     if account and account['DOB'] == dob:
-                return jsonify(account), 200
+                return jsonify({k: v for k, v in account.items() if k != 'bills'}), 200
+    else:
+        return jsonify({"error": "Authentication failed"}), 401
+
+@app.route('/bills', methods=['POST'])
+def authenticate():
+    data = request.get_json()
+    account_id = data.get('accountID')
+    dob = data.get('accountHolderDOB')
+    
+
+    if not account_id or not dob:
+         return jsonify({"error": "Missing accountID or accountHolderDOB"}), 400
+
+    account = mock_data.get(account_id)
+    if account and account['DOB'] == dob:
+                return jsonify(account["bills"]), 200
     else:
         return jsonify({"error": "Authentication failed"}), 401
 

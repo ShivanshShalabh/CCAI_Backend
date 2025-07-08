@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 import os
 
 app = Flask(__name__)
@@ -174,7 +174,7 @@ def authenticate():
 
     account = mock_data.get(account_id)
     if account and account['DOB'] == dob:
-        return jsonify({"message": "Authentication successful"}), 200
+        return Response(json.dumps({"message": "Authentication successful"}), status=200, mimetype='application/json')
     else:
         return jsonify({"error": "Authentication failed"}), 401
 
